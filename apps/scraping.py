@@ -7,13 +7,23 @@ from datetime import datetime
 
 def scrape_all():
     # Initialize headless driver for deployment
-    browser=Browser('chrome', executable_path='chromedriver', headless=True)
-    news_title, news_paragraph=mars_news(browser)
-
+    browser=Browser('chrome', 'chromedriver.exe', headless=True)
+    news_title, news_p=mars_news(browser)
+    # Run all scraping functions and store results in dictionary
+    data = {
+         'news_title': news_title,
+         'news_paragraph': news_p,
+         'featured_image': featured_image(browser),
+         'facts': mars_facts(),
+         'last_modified': dt.datetime.now()
+    }
+    print(data)
+    browser.quit()
+    return data
 
 # Set the exectuable path and initialize the chrome browser in splinter
-executable_path={'executable_path': '/usr/local/bin/chromedriver'}
-browser=Browser('chrome', **executable_path)
+# executable_path={'executable_path': '/usr/local/bin/chromedriver'}
+# browser=Browser('chrome', **executable_path)
 
 # Create function for scraping Mars news from NASA
 def mars_news(browser):
@@ -27,24 +37,19 @@ def mars_news(browser):
     # Convert the browser html to a soup object and then quit the browser
     html=browser.html
     news_soup=BeautifulSoup(html, 'html.parser')
-    slide_elem=news_soup.select_one('ul.item_list li.slide')
-    # Use the parent element to find the first 'a' tag and save it as 'news_title'
-    news_title=slide_elem.find('div', class_='content_title').get_text()
-    # Use the parent element to find the paragraph text
-    news_p=slide_elem.find('div', class_='article_teaser_body').get_text()
-
-    return news_title, news_p
 
     # Add try/except for error handling
     try:
-        slide_elem=news_soup.select_one('ul,item_list li.slide')
+        slide_elem=news_soup.select_one('ul.item_list li.slide')
         # Use the parent element to find the first 'a' tag and save it as 'news_title'
         news_title=slide_elem.find('div', class_='content_title').get_text()
         # Use the parent element to find the paragraph text
         news_p=slide_elem.find('div', class_='article_teaser_body').get_text()
-    
+       
     except AttributeError:
         return None, None
+
+    return news_title, news_p
 
 ### Featured Images
 
@@ -68,8 +73,6 @@ def featured_image(browser):
     img_url_rel=img_soup.select_one('figure.lede a img').get('src')
     # Use the base URL to create an absolute URL
     img_url=f'https://www.jpl.nasa.gov{img_url_rel}'
-    
-    return img_url
 
     try:
         # Find the relative image url
@@ -77,6 +80,8 @@ def featured_image(browser):
 
     except AttributeError:
         return None
+
+    return img_url
 
 def mars_facts():
 
@@ -87,19 +92,10 @@ def mars_facts():
     except BaseException:
         return None
     # Assign columns and set index of dataframe
-    df.columns=['Description','Mars', 'Earth']
+    df.columns=['Description','Mars']
     df.set_index('Description', inplace=True)
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html()
-
-# Run all scraping functions and store results in dictionary
-data = {
-    'news_title': news_title,
-    'news_paragraph': news_paragraph,
-    'featured_image': featured_image(browser),
-    'facts': mars_facts(),
-    'last_modified': dt.datetime.now()
-}
 
 if __name__== '__main__':
     # If running as script, print scraped data
