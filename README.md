@@ -23,6 +23,14 @@ The project was to web scrape data from several NASA webpages. These webpages ar
 7. Ran the app.py after connecting it to the HTML code.
 8. Opened the Flask webpage and test ran the webscraping process.
 
+The challenge section was to web scrape four new images from NASA Mars Hemisphere site. Each of the webpages for the hemisphere was scraped for the image and title which then be displayed onto the Flask app.
+
+1. First used splinter and chromedriver to locate and scrape the images and title from each webpage using similar formatting from the previous functions. 
+2. Created four separate functions for the web scraping for each of Mars' Hemisphere
+3. Edited the HTML page to fit the new images onto the webpage.
+4. Created new connections to MongoDB to store the new data.
+5. Tested the web scraping process on the updated webpage.
+
 ## Analysis
 
 Web Scraping is a powerful tool that can gather data from a website. It is especially useful when there is constant flow of new data. Webscraping can instantly gather the new data and update onto the desired databases. 
