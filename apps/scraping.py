@@ -4,9 +4,11 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import datetime as dt
 from datetime import datetime
+import requests
 
 def scrape_all():
     # Initialize headless driver for deployment
+    executable_path={'executable_path': '/usr/local/bin/chromedriver'}
     browser=Browser('chrome', 'chromedriver.exe', headless=True)
     news_title, news_p=mars_news(browser)
     cerb_img_url, cerberus_title=cerberus(browser)
