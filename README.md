@@ -33,40 +33,40 @@ This is the step by step guide to setup the environment and run the scraping too
 Download the required packages
 
 * Splinter
-'''sh
+```sh
 pip install splinter
-'''
+```
 
 * ChromeDriver
-- For Windows
+For Windows
 1. Download through the [webpage](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 2. Click the most updated link
 3. Download the Windows file
 4. Extract the excutable program file
 5. Place it in the same folder as the Python Script
 
-- For macOS
+For macOS
 * Using Homebrew
-'''sh
+```sh
 brew -v
-'''
-'''sh
+```
+```sh
 brew install chromedriver
-'''
+```
 * If that doesn't work use cask install
-'''sh
+```sh
 brew cask install chromedriver
-'''
+```
 Verify download
-'''sh
+```sh
 chromedriver --version
-'''
+```
 * If Homebrew doesn't work then download from the [webpage](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
 * BeautifulSoup
-'''sh
+```sh
 pip install beautifulsoup4
-'''
+```
 
 * MongoDB
 [Windows Link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
@@ -74,13 +74,13 @@ pip install beautifulsoup4
 
 ### Installation
 1. Clone the repo
-'''sh
+```sh
 git clone https://github.com/chanhodchang/Mission_to_Mars.git
-'''
+```
 2. Access MongoDB database and create a mars_app database
-'''sh
+```sh
 use mars_app
-'''
+```
 
 3. Run app.py
 
