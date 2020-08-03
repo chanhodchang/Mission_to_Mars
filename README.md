@@ -38,6 +38,7 @@ pip install splinter
 ```
 
 * ChromeDriver
+
 For Windows
 1. Download through the [webpage](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 2. Click the most updated link
@@ -69,7 +70,9 @@ pip install beautifulsoup4
 ```
 
 * MongoDB
+
 [Windows Link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+
 [macOS Link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
 ### Installation
